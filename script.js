@@ -77,14 +77,16 @@ function addEventListenerForSquares(){
 }
 
 function startingGame(){
-    document.getElementById('a3').innerHTML = "start direction bas";
     board[3] = [false, false, true, false];
     startPiece = 3;
-    document.getElementById('a13').innerHTML = "end par le haut";
-    board[13] = [true, false, false, false];
-    endPiece = 13;
+    document.getElementById('a'+3).className = "square p_y";
+    board[12] = [true, false, false, false];
+    endPiece = 12;
+    document.getElementById('a'+12).className = "square p_z";
     currentPiece = [true, false, true, false];
-    document.getElementById('current_piece').innerHTML = currentPiece;
+
+    document.getElementById('current_piece').className = "square p_a";
+    //document.getElementById('current_piece').innerHTML = currentPiece;
 }
 
 function changeSquareByClick(squareNumber){
@@ -92,23 +94,67 @@ function changeSquareByClick(squareNumber){
         console.log(squareNumber+"already used!!!");
         return null;
     }
-    else if(board[squareNumber][0] == null){
-        document.getElementById("a"+squareNumber).innerHTML = currentPiece;
+    else if(board[squareNumber][0] == null) {
         board[squareNumber] = currentPiece;
+        backgroundImgOfPiece(squareNumber);
         generateNewPiece(squareNumber);
     } 
 }
 
+function backgroundImgOfPiece(squareNumber){
+    let selector = document.getElementById("a"+squareNumber);
+    let attributionImage = "";
+    if(board[squareNumber][0] == true && board[squareNumber][1] == false && board[squareNumber][2] == true && board[squareNumber][3] == false){
+        attributionImage = "square p_a";
+    } else if(board[squareNumber][0] == false && board[squareNumber][1] == true && board[squareNumber][2] == false && board[squareNumber][3] == true){
+        attributionImage = "square p_b";
+    } else if(board[squareNumber][0] == false && board[squareNumber][1] == true && board[squareNumber][2] == true && board[squareNumber][3] == false){
+        attributionImage = "square p_c";
+    } else if(board[squareNumber][0] == false && board[squareNumber][1] == false && board[squareNumber][2] == true && board[squareNumber][3] == true){
+        attributionImage = "square p_d";
+    } else if(board[squareNumber][0] == true && board[squareNumber][1] == true && board[squareNumber][2] == false && board[squareNumber][3] == false){
+        attributionImage = "square p_e";
+    } else if(board[squareNumber][0] == true && board[squareNumber][1] == false && board[squareNumber][2] == false && board[squareNumber][3] == true){
+        attributionImage = "square p_f";
+    }
+    selector.className = attributionImage;
+}
+
+
+
+
+
+
+
 function generateNewPiece(squareNumber){
-   
+    let classpicked = "";
     let randomNumber = Math.random(0,10);
-    if(randomNumber < 0.15) currentPiece = [true, false, true, false];
-    else if(randomNumber > 0.15 && randomNumber < 0.3 ) currentPiece = [false, true, false, true];
-    else if(randomNumber > 0.35 && randomNumber < 0.5 ) currentPiece = [false, true, true, false];
-    else if(randomNumber > 0.5 && randomNumber < 0.65 ) currentPiece = [false, false, true, true];
-    else if(randomNumber > 0.65 && randomNumber < 0.8 ) currentPiece = [true, true, false, false];
-    else if(randomNumber > 0.8 && randomNumber < 1 ) currentPiece = [true, false, false, true];
-    document.getElementById('current_piece').innerHTML = currentPiece;
+    if(randomNumber < 0.15) {
+        currentPiece = [true, false, true, false];
+        classpicked = "p_a";
+    }
+    else if(randomNumber > 0.15 && randomNumber < 0.35 ) {
+        currentPiece = [false, true, false, true];
+        classpicked = "p_b";
+    }
+    else if(randomNumber > 0.35 && randomNumber < 0.5 ) {
+        currentPiece = [false, true, true, false];
+        classpicked = "p_c";
+    }
+    else if(randomNumber > 0.5 && randomNumber < 0.65 ) {
+        currentPiece = [false, false, true, true];
+        classpicked = "p_d";
+    }
+    else if(randomNumber > 0.65 && randomNumber < 0.8 ) {
+        currentPiece = [true, true, false, false];
+        classpicked = "p_e";
+    }
+    else if(randomNumber > 0.8 && randomNumber < 1 ) {
+        currentPiece = [true, false, false, true];
+        classpicked = "p_f";
+    }
+    document.getElementById('current_piece').className = "square "+classpicked;
+   // document.getElementById('current_piece').innerHTML = currentPiece;
     console.log(randomNumber);
   
     /*
@@ -229,7 +275,7 @@ function checkException(direction, pieceNumber){
     }
     //gauche
     if(direction == 3){
-        if(pieceNumber == 0 || pieceNumber == 5 || pieceNumber == 9 || pieceNumber == 13){
+        if(pieceNumber == 0 || pieceNumber == 4 || pieceNumber == 8 || pieceNumber == 12){
             return false;
         } else if(board[pieceNumber-1][1] == true) {
             if(!checkWinCondition(pieceNumber-1)){

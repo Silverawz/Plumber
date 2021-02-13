@@ -28,8 +28,58 @@ body{
     margin-bottom:50px;
 }
 
-.my_image{
-    background:URL('assets/img/pièce\ A.png');
-    width:200px;
-    height:200px;
+.p_a{
+    background: url('assets/img/pièce\ A.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
+}
+
+.p_b{
+    background: url('assets/img/pièce\ B.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
+}
+
+.p_c{
+    background: url('assets/img/pièce\ C.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
+}
+
+.p_d{
+    background: url('assets/img/pièce\ D.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
+}
+
+.p_e{
+    background: url('assets/img/pièce\ E.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
+}
+
+.p_f{
+    background: url('assets/img/pièce\ F.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
+}
+
+.p_y{
+    background: url('assets/img/pièce\ Y.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
+}
+
+.p_z{
+    background: url('assets/img/pièce\ Z.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
 }
