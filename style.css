@@ -1,0 +1,35 @@
+body{
+    margin:0;
+    padding:0;
+    background:grey;
+}
+
+.board{
+    margin-left:100px;
+    width:410px;
+    height:400px;
+    background:cornflowerblue;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.square{
+    font-size:14px;
+    margin-left:10px;
+    margin-top:10px;
+    width:90px;
+    height:90px;
+    background:crimson;
+}
+
+.current_piece{
+    margin-left:200px;
+    margin-bottom:50px;
+}
+
+.my_image{
+    background:URL('assets/img/pièce\ A.png');
+    width:200px;
+    height:200px;
+}
