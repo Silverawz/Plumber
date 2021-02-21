@@ -30,10 +30,6 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
            
 
 
-            function outerHTML(node){
-                return node.outerHTML || new XMLSerializer().serializeToString(node);
-               }
-
             function printDetails(e) {
                 changeSquareByClick(this.id);
               }
@@ -203,26 +199,6 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
                document.getElementById('current_piece').className = "square "+classpicked;
               // document.getElementById('current_piece').innerHTML = currentPiece;
                console.log(randomNumber);
-             
-               /*
-               if(test == 0){    
-                   currentPiece = [true, false, false, true];
-                   document.getElementById('current_piece').innerHTML = currentPiece;
-               } 
-               else if(test == 1){
-                   currentPiece = [false, true, false, true];
-                   document.getElementById('current_piece').innerHTML = currentPiece;
-               }
-               else if(test == 2){
-                   currentPiece = [false, true, true, false];
-                   document.getElementById('current_piece').innerHTML = currentPiece;
-                }
-                else if(test == 3){
-                   currentPiece = [false, true, true, false];
-                   document.getElementById('current_piece').innerHTML = currentPiece;
-                }
-               test++; 
-               */
                lol++;
                if(lol ==13){
                    go();
@@ -271,24 +247,25 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
            function checkException(direction, pieceNumber){
                //haut
                if(direction == 0){
-                   if(pieceNumber == 0 || pieceNumber == 1 || pieceNumber == 2 || pieceNumber == 3){
+                   if(pieceNumber == 0 || pieceNumber == 1 || pieceNumber == 2 || pieceNumber == 3 || pieceNumber == 4 || pieceNumber == 5 || pieceNumber == 6 || pieceNumber == 7){
                        return false;
-                   } else if(board[pieceNumber-4][2] == true) {
-                       if(!checkWinCondition(pieceNumber-4)){
+                   } else if(board[pieceNumber-8][2] == true) {
+                       if(!checkWinCondition(pieceNumber-8)){
                            console.log("win");
                            return false;
                        }
-                       nextPiece = pieceNumber-4;
+                       nextPiece = pieceNumber-8;
                        previousDirection = 2;
                        secondDirection = newDirection(nextPiece);
+                       animateTube(pieceNumber, 0);
                        return true;
-                   } else if(board[pieceNumber-4][2] == false) {
+                   } else if(board[pieceNumber-8][2] == false) {
                        return false;
                    }
                }
                //droite
                if(direction == 1){
-                   if(pieceNumber == 3 || pieceNumber == 7 || pieceNumber == 11 || pieceNumber == 15){
+                   if(pieceNumber == 7 || pieceNumber == 15 || pieceNumber == 23 || pieceNumber == 31 || pieceNumber == 39 || pieceNumber == 47 || pieceNumber == 55 || pieceNumber == 63){
                        return false;
                    } else if(board[pieceNumber+1][3] == true) {
                        if(!checkWinCondition(pieceNumber+1)){
@@ -298,6 +275,7 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
                        nextPiece = pieceNumber+1;
                        previousDirection = 3;
                        secondDirection = newDirection(nextPiece);
+                       animateTube(pieceNumber, 1);
                        return true;
                    } else if(board[pieceNumber+1][3] == false) {
                        return false;
@@ -305,24 +283,25 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
                }
                //bas
                if(direction == 2){
-                   if(pieceNumber == 12 || pieceNumber == 13 || pieceNumber == 14 || pieceNumber == 15){
+                   if(pieceNumber == 56 || pieceNumber == 57 || pieceNumber == 58 || pieceNumber == 59 || pieceNumber == 60 || pieceNumber == 61 || pieceNumber == 62 || pieceNumber == 63){
                        return false;
-                   } else if(board[pieceNumber+4][0] == true) {
-                       if(!checkWinCondition(pieceNumber+4)){
+                   } else if(board[pieceNumber+8][0] == true) {
+                       if(!checkWinCondition(pieceNumber+8)){
                            console.log("win");
                            return false;
                        }
-                       nextPiece = pieceNumber+4;
+                       nextPiece = pieceNumber+8;
                        previousDirection = 0;
                        secondDirection = newDirection(nextPiece);
+                       animateTube(pieceNumber, 2);
                        return true;
-                   } else if(board[pieceNumber+4][0] == false) {
+                   } else if(board[pieceNumber+8][0] == false) {
                        return false;
                    }
                }
                //gauche
                if(direction == 3){
-                   if(pieceNumber == 0 || pieceNumber == 4 || pieceNumber == 8 || pieceNumber == 12){
+                   if(pieceNumber == 0 || pieceNumber == 8 || pieceNumber == 16 || pieceNumber == 24 || pieceNumber == 32 || pieceNumber == 40 || pieceNumber == 48 || pieceNumber == 56){
                        return false;
                    } else if(board[pieceNumber-1][1] == true) {
                        if(!checkWinCondition(pieceNumber-1)){
@@ -332,6 +311,7 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
                        nextPiece = pieceNumber-1;
                        previousDirection = 1;
                        secondDirection = newDirection(nextPiece);
+                       animateTube(pieceNumber, 3);
                        return true;
                    } else if(board[pieceNumber-1][1] == false) {
                        return false;
@@ -339,6 +319,73 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
                }
            }
            
+
+
+           function animateTube(currentPiece, direction) {    
+               if(currentPiece == startPiece) {
+                return null;
+               } 
+            var pieceAttribute = checkPieceAttribute(board[currentPiece]);
+            var classname = "";
+            if(direction == 0){
+                if(pieceAttribute == "A"){
+                    classname = "square moving_a_1";
+                }  
+                else if (pieceAttribute == "E"){
+                    classname = "square moving_e_0";
+                } else {
+                    classname = "square moving_f_1";
+                }
+            }
+            else if(direction == 1){
+                if(pieceAttribute == "B"){
+                    classname = "square moving_b_0";
+                }       
+                else if (pieceAttribute == "C"){
+                    classname = "square moving_c_0";
+                } else{
+                    classname = "square moving_e_1";
+                }
+            }
+            else if(direction == 2){
+                if(pieceAttribute == "A"){
+                    classname = "square moving_a_0";
+                } 
+                else if (pieceAttribute == "D"){
+                    classname = "square moving_d_0";
+                } else{
+                    classname = "square moving_c_1";
+                }
+            }
+            else {
+                if(pieceAttribute == "B"){
+                    classname = "square moving_b_1";
+                }  
+                else if (pieceAttribute == "D"){
+                    classname = "square moving_d_1";
+                } else{
+                    classname = "square moving_f_0";
+                }
+            }
+            document.getElementById("a"+currentPiece).className = classname;
+           }
+
+
+
+
+           function checkPieceAttribute(piece){
+                if(piece[0] == true && piece[2] == true) return "A";
+                else if(piece[1] == true && piece[3] == true) return "B";
+                else if(piece[1] == true && piece[2] == true) return "C";
+                else if(piece[2] == true && piece[3] == true) return "D";
+                else if(piece[0] == true && piece[1] == true) return "E";
+                else return "F";
+            }
+
+
+
+
+
            function checkWinCondition(pieceNumber){
                if(pieceNumber == endPiece){
                    return false;
@@ -358,8 +405,43 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
            
            
            
+           /* NEW
+
+           formule pour trouver la pièce suivante a aller 
            
-           /* formule pour trouver la pièce suivante a aller 
+           --- haut ---
+           
+           index - 8 = donne la bonne pièce en haut 
+           sauf
+           pour les index 0, 1, 2, 3, 4, 5, 6, 7 = game over
+           
+           
+           --- droite ---
+           index + 1 = donne la pièce à droite 
+           sauf
+           pour les index 7, 15, 23, 31, 39, 47, 55, 63 = game over
+           
+           --- en bas ---
+           
+           index + 8 = donne la bonne pièce en bas 
+           sauf
+           pour les index 56, 57, 58, 59, 60, 61, 62, 63 = game over
+           
+           --- a gauche ---
+           index - 1 = donne la pièce à gauche 
+           sauf
+           pour les index 0, 8, 16, 24, 32, 40, 48, 56 = game over
+
+
+
+           */
+
+
+
+           /* 
+           OLD
+           
+           formule pour trouver la pièce suivante a aller 
            
            --- haut ---
            
@@ -375,7 +457,7 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
            
            --- en bas ---
            
-           index + 4 = donne la bonne pièce en haut 
+           index + 4 = donne la bonne pièce en bas 
            sauf
            pour les index 12, 13, 14, 15 = game over
            
