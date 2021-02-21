@@ -6,8 +6,8 @@ body{
 
 .board{
     margin-left:100px;
-    width:410px;
-    height:400px;
+    width:820px;
+    height:800px;
     background:cornflowerblue;
     display: flex;
     flex-wrap: wrap;
@@ -29,42 +29,42 @@ body{
 }
 
 .p_a{
-    background: url('assets/img/pièce\ A.png');  
+    background: url('assets/img/A/A.png');  
     background-size: cover;
     width:90px;
     height:90px;  
 }
 
 .p_b{
-    background: url('assets/img/pièce\ B.png');  
+    background: url('assets/img/B/B.png');  
     background-size: cover;
     width:90px;
     height:90px;  
 }
 
 .p_c{
-    background: url('assets/img/pièce\ C.png');  
+    background: url('assets/img/C/C.png');  
     background-size: cover;
     width:90px;
     height:90px;  
 }
 
 .p_d{
-    background: url('assets/img/pièce\ D.png');  
+    background: url('assets/img/D/D.png');  
     background-size: cover;
     width:90px;
     height:90px;  
 }
 
 .p_e{
-    background: url('assets/img/pièce\ E.png');  
+    background: url('assets/img/E/E.png');  
     background-size: cover;
     width:90px;
     height:90px;  
 }
 
 .p_f{
-    background: url('assets/img/pièce\ F.png');  
+    background: url('assets/img/F/F.png');  
     background-size: cover;
     width:90px;
     height:90px;  
@@ -82,4 +82,437 @@ body{
     background-size: cover;
     width:90px;
     height:90px;  
+}
+
+.test_piece{
+    margin-left:200px;
+    margin-bottom:50px;
+    width: 350px;
+    height: 250px;
+    float: left;
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    -webkit-animation: piece_f_moving_from_left_to_top 2s forwards;
+            animation: piece_f_moving_from_left_to_top 2s forwards;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* animation liquid in tube */
+
+/* tube A */
+@-webkit-keyframes piece_a_moving_from_bottom_to_top{
+    10%{
+        background-image: url('assets/img/A/A_0_1.png');
+    }
+    20%{
+        background-image: url('assets/img/A/A_0_2.png');
+    }
+    30%{
+        background-image: url('assets/img/A/A_0_3.png');
+    }
+    40%{
+        background-image: url('assets/img/A/A_0_4.png');
+    }
+    50%{
+        background-image: url('assets/img/A/A_0_5.png');
+    }
+    60%{
+        background-image: url('assets/img/A/A_0_6.png');
+    }
+    70%{
+        background-image: url('assets/img/A/A_0_7.png');
+    }
+    80%{
+        background-image: url('assets/img/A/A_0_8.png');
+    }
+    90%{
+        background-image: url('assets/img/A/A_0_9.png');
+    }
+    100%{
+        background-image: url('assets/img/A/A_x.png');
+    }
+}
+
+@-webkit-keyframes piece_a_moving_from_top_to_bottom{
+    10%{
+        background-image: url('assets/img/A/A_1_1.png');
+    }
+    20%{
+        background-image: url('assets/img/A/A_1_2.png');
+    }
+    30%{
+        background-image: url('assets/img/A/A_1_3.png');
+    }
+    40%{
+        background-image: url('assets/img/A/A_1_4.png');
+    }
+    50%{
+        background-image: url('assets/img/A/A_1_5.png');
+    }
+    60%{
+        background-image: url('assets/img/A/A_1_6.png');
+    }
+    70%{
+        background-image: url('assets/img/A/A_1_7.png');
+    }
+    80%{
+        background-image: url('assets/img/A/A_1_8.png');
+    }
+    90%{
+        background-image: url('assets/img/A/A_1_9.png');
+    }
+    100%{
+        background-image: url('assets/img/A/A_x.png');
+    }
+}
+
+/* tube B */
+@-webkit-keyframes piece_b_moving_from_left_to_right{
+    10%{
+        background-image: url('assets/img/B/B_0_1.png');
+    }
+    20%{
+        background-image: url('assets/img/B/B_0_2.png');
+    }
+    30%{
+        background-image: url('assets/img/B/B_0_3.png');
+    }
+    40%{
+        background-image: url('assets/img/B/B_0_4.png');
+    }
+    50%{
+        background-image: url('assets/img/B/B_0_5.png');
+    }
+    60%{
+        background-image: url('assets/img/B/B_0_6.png');
+    }
+    70%{
+        background-image: url('assets/img/B/B_0_7.png');
+    }
+    80%{
+        background-image: url('assets/img/B/B_0_8.png');
+    }
+    90%{
+        background-image: url('assets/img/B/B_0_9.png');
+    }
+    100%{
+        background-image: url('assets/img/B/B_x.png');
+    }
+}
+
+@-webkit-keyframes piece_b_moving_from_right_to_left{
+    10%{
+        background-image: url('assets/img/B/B_1_1.png');
+    }
+    20%{
+        background-image: url('assets/img/B/B_1_2.png');
+    }
+    30%{
+        background-image: url('assets/img/B/B_1_3.png');
+    }
+    40%{
+        background-image: url('assets/img/B/B_1_4.png');
+    }
+    50%{
+        background-image: url('assets/img/B/B_1_5.png');
+    }
+    60%{
+        background-image: url('assets/img/B/B_1_6.png');
+    }
+    70%{
+        background-image: url('assets/img/B/B_1_7.png');
+    }
+    80%{
+        background-image: url('assets/img/B/B_1_8.png');
+    }
+    90%{
+        background-image: url('assets/img/B/B_1_9.png');
+    }
+    100%{
+        background-image: url('assets/img/B/B_x.png');
+    }
+}
+
+/* tube C */
+@-webkit-keyframes piece_c_moving_from_bottom_to_right{
+    10%{
+        background-image: url('assets/img/C/C_0_1.png');
+    }
+    20%{
+        background-image: url('assets/img/C/C_0_2.png');
+    }
+    30%{
+        background-image: url('assets/img/C/C_0_3.png');
+    }
+    40%{
+        background-image: url('assets/img/C/C_0_4.png');
+    }
+    50%{
+        background-image: url('assets/img/C/C_0_5.png');
+    }
+    60%{
+        background-image: url('assets/img/C/C_0_6.png');
+    }
+    70%{
+        background-image: url('assets/img/C/C_0_7.png');
+    }
+    80%{
+        background-image: url('assets/img/C/C_0_8.png');
+    }
+    90%{
+        background-image: url('assets/img/C/C_0_9.png');
+    }
+    100%{
+        background-image: url('assets/img/C/C_x.png');
+    }
+}
+
+@-webkit-keyframes piece_c_moving_from_right_to_bottom{
+    10%{
+        background-image: url('assets/img/C/C_1_1.png');
+    }
+    20%{
+        background-image: url('assets/img/C/C_1_2.png');
+    }
+    30%{
+        background-image: url('assets/img/C/C_1_3.png');
+    }
+    40%{
+        background-image: url('assets/img/C/C_1_4.png');
+    }
+    50%{
+        background-image: url('assets/img/C/C_1_5.png');
+    }
+    60%{
+        background-image: url('assets/img/C/C_1_6.png');
+    }
+    70%{
+        background-image: url('assets/img/C/C_1_7.png');
+    }
+    80%{
+        background-image: url('assets/img/C/C_1_8.png');
+    }
+    90%{
+        background-image: url('assets/img/C/C_1_9.png');
+    }
+    100%{
+        background-image: url('assets/img/C/C_x.png');
+    }
+}
+
+/* tube D */
+@-webkit-keyframes piece_d_moving_from_left_to_bottom{
+    10%{
+        background-image: url('assets/img/D/D_0_1.png');
+    }
+    20%{
+        background-image: url('assets/img/D/D_0_2.png');
+    }
+    30%{
+        background-image: url('assets/img/D/D_0_3.png');
+    }
+    40%{
+        background-image: url('assets/img/D/D_0_4.png');
+    }
+    50%{
+        background-image: url('assets/img/D/D_0_5.png');
+    }
+    60%{
+        background-image: url('assets/img/D/D_0_6.png');
+    }
+    70%{
+        background-image: url('assets/img/D/D_0_7.png');
+    }
+    80%{
+        background-image: url('assets/img/D/D_0_8.png');
+    }
+    90%{
+        background-image: url('assets/img/D/D_0_9.png');
+    }
+    100%{
+        background-image: url('assets/img/D/D_x.png');
+    }
+}
+
+@-webkit-keyframes piece_d_moving_from_bottom_to_left{
+    10%{
+        background-image: url('assets/img/D/D_1_1.png');
+    }
+    20%{
+        background-image: url('assets/img/D/D_1_2.png');
+    }
+    30%{
+        background-image: url('assets/img/D/D_1_3.png');
+    }
+    40%{
+        background-image: url('assets/img/D/D_1_4.png');
+    }
+    50%{
+        background-image: url('assets/img/D/D_1_5.png');
+    }
+    60%{
+        background-image: url('assets/img/D/D_1_6.png');
+    }
+    70%{
+        background-image: url('assets/img/D/D_1_7.png');
+    }
+    80%{
+        background-image: url('assets/img/D/D_1_8.png');
+    }
+    90%{
+        background-image: url('assets/img/D/D_1_9.png');
+    }
+    100%{
+        background-image: url('assets/img/D/D_x.png');
+    }
+}
+
+/* tube E */
+@-webkit-keyframes piece_e_moving_from_right_to_top{
+    10%{
+        background-image: url('assets/img/E/E_0_1.png');
+    }
+    20%{
+        background-image: url('assets/img/E/E_0_2.png');
+    }
+    30%{
+        background-image: url('assets/img/E/E_0_3.png');
+    }
+    40%{
+        background-image: url('assets/img/E/E_0_4.png');
+    }
+    50%{
+        background-image: url('assets/img/E/E_0_5.png');
+    }
+    60%{
+        background-image: url('assets/img/E/E_0_6.png');
+    }
+    70%{
+        background-image: url('assets/img/E/E_0_7.png');
+    }
+    80%{
+        background-image: url('assets/img/E/E_0_8.png');
+    }
+    90%{
+        background-image: url('assets/img/E/E_0_9.png');
+    }
+    100%{
+        background-image: url('assets/img/E/E_x.png');
+    }
+}
+
+@-webkit-keyframes piece_e_moving_from_top_to_right{
+    10%{
+        background-image: url('assets/img/E/E_1_1.png');
+    }
+    20%{
+        background-image: url('assets/img/E/E_1_2.png');
+    }
+    30%{
+        background-image: url('assets/img/E/E_1_3.png');
+    }
+    40%{
+        background-image: url('assets/img/E/E_1_4.png');
+    }
+    50%{
+        background-image: url('assets/img/E/E_1_5.png');
+    }
+    60%{
+        background-image: url('assets/img/E/E_1_6.png');
+    }
+    70%{
+        background-image: url('assets/img/E/E_1_7.png');
+    }
+    80%{
+        background-image: url('assets/img/E/E_1_8.png');
+    }
+    90%{
+        background-image: url('assets/img/E/E_1_9.png');
+    }
+    100%{
+        background-image: url('assets/img/E/E_x.png');
+    }
+}
+
+/* tube F */
+@-webkit-keyframes piece_f_moving_from_top_to_left{
+    10%{
+        background-image: url('assets/img/F/F_0_1.png');
+    }
+    20%{
+        background-image: url('assets/img/F/F_0_2.png');
+    }
+    30%{
+        background-image: url('assets/img/F/F_0_3.png');
+    }
+    40%{
+        background-image: url('assets/img/F/F_0_4.png');
+    }
+    50%{
+        background-image: url('assets/img/F/F_0_5.png');
+    }
+    60%{
+        background-image: url('assets/img/F/F_0_6.png');
+    }
+    70%{
+        background-image: url('assets/img/F/F_0_7.png');
+    }
+    80%{
+        background-image: url('assets/img/F/F_0_8.png');
+    }
+    90%{
+        background-image: url('assets/img/F/F_0_9.png');
+    }
+    100%{
+        background-image: url('assets/img/F/F_x.png');
+    }
+}
+
+@-webkit-keyframes piece_f_moving_from_left_to_top{
+    10%{
+        background-image: url('assets/img/F/F_1_1.png');
+    }
+    20%{
+        background-image: url('assets/img/F/F_1_2.png');
+    }
+    30%{
+        background-image: url('assets/img/F/F_1_3.png');
+    }
+    40%{
+        background-image: url('assets/img/F/F_1_4.png');
+    }
+    50%{
+        background-image: url('assets/img/F/F_1_5.png');
+    }
+    60%{
+        background-image: url('assets/img/F/F_1_6.png');
+    }
+    70%{
+        background-image: url('assets/img/F/F_1_7.png');
+    }
+    80%{
+        background-image: url('assets/img/F/F_1_8.png');
+    }
+    90%{
+        background-image: url('assets/img/F/F_1_9.png');
+    }
+    100%{
+        background-image: url('assets/img/F/F_x.png');
+    }
 }
