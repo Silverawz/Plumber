@@ -32,6 +32,10 @@ body{
     margin-left:200px;
     margin-bottom:50px;
     background:rgb(0, 0, 0);
+    position: absolute;
+    Top:0px;
+    Left:0px;
+    visibility:hidden;
 }
 
 .p_a{
