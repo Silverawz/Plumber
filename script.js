@@ -23,11 +23,38 @@ var board = [[null, null, null, null],[null, null, null, null],[null, null, null
                for(j=0; j < nbreCase; j++){
                    board.push([null,null,null,null]);
                } 
+               loadImgInBackGround();
                startingGame();
                addEventListenerForSquares();
             }
            
            
+            function loadImgInBackGround(){
+                for(i = 0; i < 12; i++){
+                    switch(i){
+                        case 1: document.getElementById('invisible_piece_a').className = "square moving_a_0";
+                        case 2: document.getElementById('invisible_piece_a1').className = "square moving_a_1";
+                        case 3: document.getElementById('invisible_piece_b').className = "square moving_b_0";
+                        case 4: document.getElementById('invisible_piece_b1').className = "square moving_b_1";
+                        case 5: document.getElementById('invisible_piece_c').className = "square moving_c_0";
+                        case 6: document.getElementById('invisible_piece_c1').className = "square moving_c_1";
+                        case 7: document.getElementById('invisible_piece_d').className = "square moving_d_0";
+                        case 8: document.getElementById('invisible_piece_d1').className = "square moving_d_1";
+                        case 9: document.getElementById('invisible_piece_e').className = "square moving_e_0";
+                        case 10: document.getElementById('invisible_piece_e1').className = "square moving_e_1";
+                        case 11: document.getElementById('invisible_piece_f').className = "square moving_f_0";
+                        case 12: document.getElementById('invisible_piece_f1').className = "square moving_f_1";
+                    }
+                }
+/*
+                for(j = 0; j < 12; j++){
+                    document.querySelector('.invisible_piece')[j].style.visibility = 'hidden';
+                }
+*/
+            }
+
+
+
 
 
             function printDetails(e) {

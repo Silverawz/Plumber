@@ -28,6 +28,12 @@ body{
     margin-bottom:50px;
 }
 
+.invisible_piece{
+    margin-left:200px;
+    margin-bottom:50px;
+    background:rgb(0, 0, 0);
+}
+
 .p_a{
     background: url('assets/img/A/A.png');  
     background-size: cover;
@@ -88,96 +94,96 @@ body{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_a_moving_from_top_to_bottom 2s forwards;
-            animation: piece_a_moving_from_top_to_bottom 2s forwards;
+    -webkit-animation: piece_a_moving_from_top_to_bottom 1s forwards;
+            animation: piece_a_moving_from_top_to_bottom 1s forwards;
 }
 
 .moving_a_1{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_a_moving_from_bottom_to_top 2s forwards;
-            animation: piece_a_moving_from_bottom_to_top 2s forwards;
+    -webkit-animation: piece_a_moving_from_bottom_to_top 1s forwards;
+            animation: piece_a_moving_from_bottom_to_top 1s forwards;
 }
 
 .moving_b_0{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_b_moving_from_left_to_right 2s forwards;
-            animation: piece_b_moving_from_left_to_right 2s forwards;
+    -webkit-animation: piece_b_moving_from_left_to_right 1s forwards;
+            animation: piece_b_moving_from_left_to_right 1s forwards;
 }
 
 .moving_b_1{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_b_moving_from_right_to_left 2s forwards;
-            animation: piece_b_moving_from_right_to_left 2s forwards;
+    -webkit-animation: piece_b_moving_from_right_to_left 1s forwards;
+            animation: piece_b_moving_from_right_to_left 1s forwards;
 }
 
 .moving_c_0{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_c_moving_from_bottom_to_right 2s forwards;
-            animation: piece_c_moving_from_bottom_to_right 2s forwards;
+    -webkit-animation: piece_c_moving_from_bottom_to_right 1s forwards;
+            animation: piece_c_moving_from_bottom_to_right 1s forwards;
 }
 
 .moving_c_1{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_c_moving_from_right_to_bottom 2s forwards;
-            animation: piece_c_moving_from_right_to_bottom 2s forwards;
+    -webkit-animation: piece_c_moving_from_right_to_bottom 1s forwards;
+            animation: piece_c_moving_from_right_to_bottom 1s forwards;
 }
 
 .moving_d_0{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_d_moving_from_left_to_bottom 2s forwards;
-            animation: piece_d_moving_from_left_to_bottom 2s forwards;
+    -webkit-animation: piece_d_moving_from_left_to_bottom 1s forwards;
+            animation: piece_d_moving_from_left_to_bottom 1s forwards;
 }
 
 .moving_d_1{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_d_moving_from_bottom_to_left 2s forwards;
-            animation: piece_d_moving_from_bottom_to_left 2s forwards;
+    -webkit-animation: piece_d_moving_from_bottom_to_left 1s forwards;
+            animation: piece_d_moving_from_bottom_to_left 1s forwards;
 }
 
 .moving_e_0{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_e_moving_from_right_to_top 2s forwards;
-            animation: piece_e_moving_from_right_to_top 2s forwards;
+    -webkit-animation: piece_e_moving_from_right_to_top 1s forwards;
+            animation: piece_e_moving_from_right_to_top 1s forwards;
 }
 
 .moving_e_1{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_e_moving_from_top_to_right 2s forwards;
-            animation: piece_e_moving_from_top_to_right 2s forwards;
+    -webkit-animation: piece_e_moving_from_top_to_right 1s forwards;
+            animation: piece_e_moving_from_top_to_right 1s forwards;
 }
 
 .moving_f_0{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_f_moving_from_top_to_left 2s forwards;
-            animation: piece_f_moving_from_top_to_left 2s forwards;
+    -webkit-animation: piece_f_moving_from_top_to_left 1s forwards;
+            animation: piece_f_moving_from_top_to_left 1s forwards;
 }
 
 .moving_f_1{
     background-size: contain;
     background-position: 50% 50%;
     background-repeat: no-repeat;
-    -webkit-animation: piece_f_moving_from_left_to_top 2s forwards;
-            animation: piece_f_moving_from_left_to_top 2s forwards;
+    -webkit-animation: piece_f_moving_from_left_to_top 1s forwards;
+            animation: piece_f_moving_from_left_to_top 1s forwards;
 }
 
 
