@@ -100,12 +100,13 @@
                }
            
            function startingGame(){
-               board[3] = [false, false, true, false];
-               startPiece = 3;
-               document.getElementById('a'+3).className = "square p_y";
-               board[12] = [true, false, false, false];
-               endPiece = 12;
-               document.getElementById('a'+12).className = "square p_z";
+               //3 12
+               board[17] = [false, false, true, false];
+               startPiece = 17;
+               document.getElementById('a'+17).className = "square p_y";
+               board[38] = [true, false, false, false];
+               endPiece = 38;
+               document.getElementById('a'+38).className = "square p_z";
                currentPiece = [true, false, true, false];     
                document.getElementById('current_piece').className = "square p_a";
                countdownStart60();
@@ -167,22 +168,75 @@
                document.getElementById('current_piece').className = "square "+classpicked;             
            }
 
+         
            
+
            function fluidIsMoving(){
-               interval = setInterval(function(){     
-               let conclusion = checkNextPiecePosition();      
-               if(!conclusion){
-                   clearInterval(interval);
-                   if(victory){
-                    moveFinishPiece();
-                   } else{
-                    document.querySelector('h3').innerHTML = "Defeat !";
-                   }
-               }}, 1000)
+
+            interval = setInterval(function(){       
+
+
+                
+                let conclusion = checkNextPiecePosition();  
+                if(!conclusion){
+                    clearInterval(interval);
+                    if(victory){
+                        moveFinishPiece();
+                    } else{
+                        document.querySelector('h3').innerHTML = "Defeat !";
+                    }
+                }        
+            }, 1000)
            }
            
+
+
+        function checkNextPiecePosition(){
+            let validate = true;
+            if(numberOfPieces == 0){
+                for(i = 0; i < board[startPiece].length; i++){
+                    if(board[startPiece][i] == true){
+                        moveStarterPiece();
+                        validate = checkException(i, startPiece);
+                    }
+                }
+            } else {
+                validate = checkException(secondDirection, nextPiece);
+            }
+            numberOfPieces++;
+            return validate;
+        }
+        
+           /* verification */
+/*
+           function checkNextPiecePosition(){
+            let validate = true;
+            if(numberOfPieces == 0){
+                for(i = 0; i < board[startPiece].length; i++){
+                    if(board[startPiece][i] == true){
+                        moveStarterPiece();
+                        validate = checkException(i, startPiece);
+                    }
+                }
+            } else {
+                validate = checkException(secondDirection, nextPiece);
+            }
+            numberOfPieces++;
+            return validate;
+        }
+*/
+
+
+
+
+
+
+
+
+
+
            function countdownStart60(){
-            countdown = 10;
+            countdown = 6;
             timer = setInterval(function() {
                 countdown--;
                 document.querySelector('h4').innerHTML = "Starting in : "+countdown;
@@ -197,7 +251,7 @@
 
          
            function moveFinishPiece(){
-               wait = setTimeout(function(){     
+                wait = setTimeout(function(){     
                 document.getElementById("a"+endPiece).className = "square moving_z";      
                 currentLevel++;
                 document.querySelector('h2').innerHTML = "Current level : "+currentLevel+"";
@@ -205,38 +259,25 @@
                 }, 1000)
            }  
 
-           /* verification */
+
            
-           function checkNextPiecePosition(){
-               let validate = true;
-               if(numberOfPieces == 0){
-                   for(i = 0; i < board[startPiece].length; i++){
-                       if(board[startPiece][i] == true){
-                           moveStarterPiece();
-                           validate = checkException(i, startPiece);
-                       }
-                   }
-               } else {
-                   validate = checkException(secondDirection, nextPiece);
-               }
-               numberOfPieces++;
-               return validate;
-           }
-           
+
+
+
            function moveStarterPiece(){
             document.getElementById("a"+startPiece).className = "square moving_y";
            }
 
 
+
            function checkException(direction, pieceNumber){
+            animateTube(pieceNumber, direction);
                //haut
                if(direction == 0){
                    if(pieceNumber == 0 || pieceNumber == 1 || pieceNumber == 2 || pieceNumber == 3 || pieceNumber == 4 || pieceNumber == 5 || pieceNumber == 6 || pieceNumber == 7){
-                       animateTube(pieceNumber, 0);
                        victory = false;
                        return false;
                    } else if(board[pieceNumber-8][2] == true) {
-                       animateTube(pieceNumber, 0);
                        if(!checkWinCondition(pieceNumber-8)){
                            victory = true;
                            return false;
@@ -245,8 +286,7 @@
                        previousDirection = 2;
                        secondDirection = newDirection(nextPiece);
                        return true;
-                   } else if(board[pieceNumber-8][2] == false) {
-                       animateTube(pieceNumber, 0);
+                   } else if(board[pieceNumber-8][2] == false || board[pieceNumber-8][2] == null) {
                        victory = false;
                        return false;
                    }
@@ -254,11 +294,9 @@
                //droite
                if(direction == 1){
                    if(pieceNumber == 7 || pieceNumber == 15 || pieceNumber == 23 || pieceNumber == 31 || pieceNumber == 39 || pieceNumber == 47 || pieceNumber == 55 || pieceNumber == 63){
-                        animateTube(pieceNumber, 1);
                         victory = false;
                         return false;
                    } else if(board[pieceNumber+1][3] == true) {
-                    animateTube(pieceNumber, 1);
                        if(!checkWinCondition(pieceNumber+1)){
                            victory = true;
                            return false;
@@ -267,8 +305,7 @@
                        previousDirection = 3;
                        secondDirection = newDirection(nextPiece);
                        return true;
-                   } else if(board[pieceNumber+1][3] == false) {
-                       animateTube(pieceNumber, 1);
+                   } else if(board[pieceNumber+1][3] == false || board[pieceNumber+1][3] == null) {
                        victory = false;
                        return false;
                    }
@@ -276,11 +313,9 @@
                //bas
                if(direction == 2){
                    if(pieceNumber == 56 || pieceNumber == 57 || pieceNumber == 58 || pieceNumber == 59 || pieceNumber == 60 || pieceNumber == 61 || pieceNumber == 62 || pieceNumber == 63){
-                    animateTube(pieceNumber, 2);
                     victory = false;
                     return false;
                    } else if(board[pieceNumber+8][0] == true) {
-                    animateTube(pieceNumber, 2);
                        if(!checkWinCondition(pieceNumber+8)){
                            victory = true;
                            return false;
@@ -289,8 +324,7 @@
                        previousDirection = 0;
                        secondDirection = newDirection(nextPiece);
                        return true;
-                   } else if(board[pieceNumber+8][0] == false) {
-                    animateTube(pieceNumber, 2);
+                   } else if(board[pieceNumber+8][0] == false || board[pieceNumber+8][0] == null) {
                        victory = false;
                        return false;
                    }
@@ -298,11 +332,9 @@
                //gauche
                if(direction == 3){
                    if(pieceNumber == 0 || pieceNumber == 8 || pieceNumber == 16 || pieceNumber == 24 || pieceNumber == 32 || pieceNumber == 40 || pieceNumber == 48 || pieceNumber == 56){
-                    animateTube(pieceNumber, 3);
                     victory = false;
                     return false;
                    } else if(board[pieceNumber-1][1] == true) {
-                    animateTube(pieceNumber, 3);
                        if(!checkWinCondition(pieceNumber-1)){
                            victory = true;
                            return false;
@@ -311,8 +343,7 @@
                        previousDirection = 1;
                        secondDirection = newDirection(nextPiece);
                        return true;
-                   } else if(board[pieceNumber-1][1] == false) {
-                    animateTube(pieceNumber, 3);
+                   } else if(board[pieceNumber-1][1] == false || board[pieceNumber-1][1] == null) {
                        victory = false;
                        return false;
                    }
@@ -321,7 +352,8 @@
            
 
 
-           function animateTube(currentPiece, direction) {    
+           function animateTube(currentPiece, direction) {  
+               console.log("NNNN // currentPiece="+currentPiece+"&&&&& direction="+direction);
                if(currentPiece == startPiece) {
                 return null;
                } 
