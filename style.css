@@ -81,14 +81,14 @@ body{
 }
 
 .p_y{
-    background: url('assets/img/pièce\ Y.png');  
+    background: url('assets/img/Y/Y.png');  
     background-size: cover;
     width:90px;
     height:90px;  
 }
 
 .p_z{
-    background: url('assets/img/pièce\ Z.png');  
+    background: url('assets/img/Z/Z.png');  
     background-size: cover;
     width:90px;
     height:90px;  
@@ -190,9 +190,21 @@ body{
             animation: piece_f_moving_from_left_to_top 1s forwards;
 }
 
+.moving_y{
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    -webkit-animation: piece_y_moving 1s forwards;
+            animation: piece_y_moving 1s forwards;
+}
 
-
-
+.moving_z{
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    -webkit-animation: piece_z_moving 1s forwards;
+            animation: piece_z_moving 1s forwards;
+}
 
 
 
@@ -597,5 +609,43 @@ body{
     }
     100%{
         background-image: url('assets/img/F/F_x.png');
+    }
+}
+
+/* tube y */
+@-webkit-keyframes piece_y_moving{
+    10%{
+        background-image: url('assets/img/Y/Y1.png');
+    }
+    40%{
+        background-image: url('assets/img/Y/Y2.png');
+    }
+    70%{
+        background-image: url('assets/img/Y/Y3.png');
+    }
+    100%{
+        background-image: url('assets/img/Y/Y4.png');
+    }
+}
+
+/* tube z */
+@-webkit-keyframes piece_z_moving{
+    10%{
+        background-image: url('assets/img/Z/Z1.png');
+    }
+    20%{
+        background-image: url('assets/img/Z/Z2.png');
+    }
+    40%{
+        background-image: url('assets/img/Z/Z3.png');
+    }
+    60%{
+        background-image: url('assets/img/Z/Z4.png');
+    }
+    80%{
+        background-image: url('assets/img/Z/Z5.png');
+    }
+    100%{
+        background-image: url('assets/img/Z/Z6.png');
     }
 }

@@ -9,8 +9,11 @@
            var previousDirection = null;
            var secondDirection = null;
            var nextPiece = null;
-           var test = 0;
-           
+           var currentLevel = 1;
+           var victory = false;
+           var countdown = 60;
+
+
            window.onload = function initialize(){
                for(i=0; i < 63; i++){
                    squares[i] = document.getElementById('a'+i);
@@ -19,15 +22,32 @@
                    board.push([null,null,null,null]);
                } 
                loadImgInBackGround();
+               document.querySelector('h2').innerHTML = "Current level : "+currentLevel+"";
             }
            
             function start(){
+                document.querySelector('h3').innerHTML = "Playing...";
                 startingGame();
                 addEventListenerForSquares();
             }
            
             function loadImgInBackGround(){
-                for(i = 0; i < 12; i++){
+                document.getElementById('invisible_piece_a').className = "invisible_piece square moving_a_0";
+                document.getElementById('invisible_piece_a1').className = "invisible_piece square moving_a_1";
+                document.getElementById('invisible_piece_b').className = "invisible_piece square moving_b_0";
+                document.getElementById('invisible_piece_b1').className = "invisible_piece square moving_b_1";
+                document.getElementById('invisible_piece_c').className = "invisible_piece square moving_c_0";
+                document.getElementById('invisible_piece_c1').className = "invisible_piece square moving_c_1";
+                document.getElementById('invisible_piece_d').className = "invisible_piece square moving_d_0";
+                document.getElementById('invisible_piece_d1').className = "invisible_piece square moving_d_1";
+                document.getElementById('invisible_piece_e').className = "invisible_piece square moving_e_0";
+                document.getElementById('invisible_piece_e1').className = "invisible_piece square moving_e_1";
+                document.getElementById('invisible_piece_f').className = "invisible_piece square moving_f_0";
+                document.getElementById('invisible_piece_f1').className = "invisible_piece square moving_f_1";
+                document.getElementById('invisible_piece_y').className = "invisible_piece square moving_y";
+                document.getElementById('invisible_piece_z').className = "invisible_piece square moving_z";
+                /*
+                for(i = 0; i < 14; i++){
                     switch(i){
                         case 1: document.getElementById('invisible_piece_a').className = "invisible_piece square moving_a_0";
                         case 2: document.getElementById('invisible_piece_a1').className = "invisible_piece square moving_a_1";
@@ -41,18 +61,20 @@
                         case 10: document.getElementById('invisible_piece_e1').className = "invisible_piece square moving_e_1";
                         case 11: document.getElementById('invisible_piece_f').className = "invisible_piece square moving_f_0";
                         case 12: document.getElementById('invisible_piece_f1').className = "invisible_piece square moving_f_1";
+                        case 13: document.getElementById('invisible_piece_y').className = "invisible_piece square moving_y";
+                        case 14: document.getElementById('invisible_piece_z').className = "invisible_piece square moving_z";
                     }
                 }
+                */
             }
 
 
 
 
 
-            function printDetails(e) {
+            function eventlistner(e) {
                 changeSquareByClick(this.id);
               }
-
               function changeSquareByClick(squareNumber){  
                 let index;
                 for(z = 0; z < 64; z++){
@@ -70,13 +92,10 @@
                        generateNewPiece(index);
                    } 
                }
-
-
-
                function addEventListenerForSquares(){
                     var items = document.getElementsByClassName('square');
                     for (var i = 0; i < items.length; i++) {
-                        items[i].addEventListener('click', printDetails);
+                        items[i].addEventListener('click', eventlistner);
                     }
                }
            
@@ -87,9 +106,9 @@
                board[12] = [true, false, false, false];
                endPiece = 12;
                document.getElementById('a'+12).className = "square p_z";
-               currentPiece = [true, false, true, false];
-           
+               currentPiece = [true, false, true, false];     
                document.getElementById('current_piece').className = "square p_a";
+               countdownStart60();
            }
            
 
@@ -121,7 +140,6 @@
            
            function generateNewPiece(squareNumber){
                let classpicked = "";
-               console.log(lol+"==="+currentPiece.typeOf);
                if(currentPiece[0] == true && currentPiece[1] == false && currentPiece[2] == true && currentPiece[3] == false) {
                 currentPiece = [false, true, false, true];
                 classpicked = "p_b";
@@ -146,30 +164,47 @@
                 currentPiece = [true, false, true, false];
                 classpicked = "p_a";
                }
-               document.getElementById('current_piece').className = "square "+classpicked;
-               lol++;
-               if(lol ==13){
-                   go();
-               }               
+               document.getElementById('current_piece').className = "square "+classpicked;             
            }
-           
-           let lol = 0;
-           function go(){
-               fluidIsMoving();
-           }
+
            
            function fluidIsMoving(){
-               interval = setInterval(function(){
-               console.log("en cours");
+               interval = setInterval(function(){     
                let conclusion = checkNextPiecePosition();      
                if(!conclusion){
                    clearInterval(interval);
-                   console.log("end");
+                   if(victory){
+                    moveFinishPiece();
+                   } else{
+                    document.querySelector('h3').innerHTML = "Defeat !";
+                   }
                }}, 1000)
            }
            
-           
-           
+           function countdownStart60(){
+            countdown = 10;
+            timer = setInterval(function() {
+                countdown--;
+                document.querySelector('h4').innerHTML = "Starting in : "+countdown;
+                if(countdown == 0) {
+                    clearInterval(timer);
+                    document.querySelector('h4').innerHTML = "";
+                    fluidIsMoving();
+                }
+            }, 1000);
+        }
+
+
+         
+           function moveFinishPiece(){
+               wait = setTimeout(function(){     
+                document.getElementById("a"+endPiece).className = "square moving_z";      
+                currentLevel++;
+                document.querySelector('h2').innerHTML = "Current level : "+currentLevel+"";
+                document.querySelector('h3').innerHTML = "Victory !";
+                }, 1000)
+           }  
+
            /* verification */
            
            function checkNextPiecePosition(){
@@ -177,30 +212,33 @@
                if(numberOfPieces == 0){
                    for(i = 0; i < board[startPiece].length; i++){
                        if(board[startPiece][i] == true){
+                           moveStarterPiece();
                            validate = checkException(i, startPiece);
                        }
                    }
                } else {
-                   console.log("nextPiece="+nextPiece);
-                   console.log("secondDirection="+secondDirection);
-                   console.log("numberOfPieces="+numberOfPieces);
                    validate = checkException(secondDirection, nextPiece);
                }
                numberOfPieces++;
                return validate;
            }
            
-           
+           function moveStarterPiece(){
+            document.getElementById("a"+startPiece).className = "square moving_y";
+           }
+
+
            function checkException(direction, pieceNumber){
                //haut
                if(direction == 0){
                    if(pieceNumber == 0 || pieceNumber == 1 || pieceNumber == 2 || pieceNumber == 3 || pieceNumber == 4 || pieceNumber == 5 || pieceNumber == 6 || pieceNumber == 7){
                        animateTube(pieceNumber, 0);
+                       victory = false;
                        return false;
                    } else if(board[pieceNumber-8][2] == true) {
-                        animateTube(pieceNumber, 0);
+                       animateTube(pieceNumber, 0);
                        if(!checkWinCondition(pieceNumber-8)){
-                           console.log("win");
+                           victory = true;
                            return false;
                        }
                        nextPiece = pieceNumber-8;
@@ -209,6 +247,7 @@
                        return true;
                    } else if(board[pieceNumber-8][2] == false) {
                        animateTube(pieceNumber, 0);
+                       victory = false;
                        return false;
                    }
                }
@@ -216,11 +255,12 @@
                if(direction == 1){
                    if(pieceNumber == 7 || pieceNumber == 15 || pieceNumber == 23 || pieceNumber == 31 || pieceNumber == 39 || pieceNumber == 47 || pieceNumber == 55 || pieceNumber == 63){
                         animateTube(pieceNumber, 1);
+                        victory = false;
                         return false;
                    } else if(board[pieceNumber+1][3] == true) {
                     animateTube(pieceNumber, 1);
                        if(!checkWinCondition(pieceNumber+1)){
-                           console.log("win");
+                           victory = true;
                            return false;
                        }
                        nextPiece = pieceNumber+1;
@@ -228,7 +268,8 @@
                        secondDirection = newDirection(nextPiece);
                        return true;
                    } else if(board[pieceNumber+1][3] == false) {
-                    animateTube(pieceNumber, 1);
+                       animateTube(pieceNumber, 1);
+                       victory = false;
                        return false;
                    }
                }
@@ -236,11 +277,12 @@
                if(direction == 2){
                    if(pieceNumber == 56 || pieceNumber == 57 || pieceNumber == 58 || pieceNumber == 59 || pieceNumber == 60 || pieceNumber == 61 || pieceNumber == 62 || pieceNumber == 63){
                     animateTube(pieceNumber, 2);
+                    victory = false;
                     return false;
                    } else if(board[pieceNumber+8][0] == true) {
                     animateTube(pieceNumber, 2);
                        if(!checkWinCondition(pieceNumber+8)){
-                           console.log("win");
+                           victory = true;
                            return false;
                        }
                        nextPiece = pieceNumber+8;
@@ -249,6 +291,7 @@
                        return true;
                    } else if(board[pieceNumber+8][0] == false) {
                     animateTube(pieceNumber, 2);
+                       victory = false;
                        return false;
                    }
                }
@@ -256,11 +299,12 @@
                if(direction == 3){
                    if(pieceNumber == 0 || pieceNumber == 8 || pieceNumber == 16 || pieceNumber == 24 || pieceNumber == 32 || pieceNumber == 40 || pieceNumber == 48 || pieceNumber == 56){
                     animateTube(pieceNumber, 3);
+                    victory = false;
                     return false;
                    } else if(board[pieceNumber-1][1] == true) {
                     animateTube(pieceNumber, 3);
                        if(!checkWinCondition(pieceNumber-1)){
-                           console.log("win");
+                           victory = true;
                            return false;
                        }
                        nextPiece = pieceNumber-1;
@@ -269,6 +313,7 @@
                        return true;
                    } else if(board[pieceNumber-1][1] == false) {
                     animateTube(pieceNumber, 3);
+                       victory = false;
                        return false;
                    }
                }
