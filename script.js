@@ -11,7 +11,7 @@
            var nextPiece = null;
            var currentLevel = 1;
            var victory = false;
-           var countdown = 10;
+           var countdown = 20;
            var active = false;
 
            window.onload = function initialize(){
@@ -105,8 +105,7 @@
            function startingGame(){
                 active = true;
                 console.log("currentLevel =="+currentLevel);
-                if(currentLevel == 1){ 
-                        console.log("1");        
+                if(currentLevel == 1){         
                         board[17] = [false, false, true, false];
                         startPiece = 17;
                         document.getElementById('a'+17).className = "square p_y";
@@ -115,9 +114,8 @@
                         document.getElementById('a'+38).className = "square p_z";
                         currentPiece = [true, false, true, false];     
                         document.getElementById('current_piece').className = "square p_a";
-                        countdownStart60();
+                        countdownStart(20);
                 } else if(currentLevel == 2){  
-                     console.log("2");
                         board[3] = [false, false, true, false];
                         startPiece = 3;
                         document.getElementById('a'+3).className = "square p_y";
@@ -126,18 +124,37 @@
                         document.getElementById('a'+45).className = "square p_z";
                         currentPiece = [true, false, true, false];     
                         document.getElementById('current_piece').className = "square p_a";
-                        countdownStart60();
+                        countdownStart(20);
                 } else if(currentLevel == 3){  
-                    console.log("2");
                        board[16] = [false, false, true, false];
                        startPiece = 16;
                        document.getElementById('a'+16).className = "square p_y";
-                       board[32] = [true, false, false, false];
-                       endPiece = 32;
-                       document.getElementById('a'+32).className = "square p_z";
+                       board[55] = [true, false, false, false];
+                       endPiece = 55;
+                       document.getElementById('a'+55).className = "square p_z";
                        currentPiece = [true, false, true, false];     
                        document.getElementById('current_piece').className = "square p_a";
-                       countdownStart60();
+                       countdownStart(20);
+               } else if(currentLevel == 4){  
+                        board[3] = [false, false, true, false];
+                        startPiece = 3;
+                        document.getElementById('a'+3).className = "square p_y";
+                        board[58] = [true, false, false, false];
+                        endPiece = 58;
+                        document.getElementById('a'+58).className = "square p_z";
+                        currentPiece = [true, false, true, false];     
+                        document.getElementById('current_piece').className = "square p_a";
+                   countdownStart(20);
+               } else if(currentLevel == 5){  
+                        board[1] = [false, false, true, false];
+                        startPiece = 1;
+                        document.getElementById('a'+1).className = "square p_y";
+                        board[62] = [true, false, false, false];
+                        endPiece = 62;
+                        document.getElementById('a'+62).className = "square p_z";
+                        currentPiece = [true, false, true, false];     
+                        document.getElementById('current_piece').className = "square p_a";
+                        countdownStart(20);
                }
            }
            
@@ -218,7 +235,8 @@
 
 
 
-           function countdownStart60(){
+           function countdownStart(cd){
+            countdown = cd;
             timer = setInterval(function() {
                 countdown--;
                 document.querySelector('h4').innerHTML = "Starting in : "+countdown;
@@ -229,28 +247,7 @@
                 }
             }, 1000);
         }
-
-
-         
-           function moveFinishPiece(){
-                wait = setTimeout(function(){     
-                document.getElementById("a"+endPiece).className = "square moving_z";      
-                currentLevel++;
-                document.querySelector('h2').innerHTML = "Current level : "+currentLevel+"";
-                document.querySelector('h3').innerHTML = "Victory !";
-                }, 1000)
-           }  
-
-
-           
-
-
-
-
-
-
-
-          
+        
 
 
            function animateTube() {  
@@ -283,7 +280,11 @@
                 } 
                 else if (pieceAttribute == "F"){
                     classname = "square moving_f_0";
-                }else{
+                }
+                else if (pieceAttribute == "Z"){
+                    classname = "square moving_z";
+                }
+                else{
                     classname = "square moving_e_1";
                 }
             }
@@ -302,22 +303,6 @@
 
 
 
-
-
-
-
-
-
-
-           function checkWinCondition(pieceNumber){
-               if(pieceNumber == endPiece){
-                   return false;
-               } else {
-                   return true;
-               }
-           }
-           
-           
            function nextDirection(){ 
                if(direction != 2 && board[previousPiece][0] == true) {
                 direction = 0;
@@ -338,43 +323,57 @@
             else if(piece[1] == true && piece[2] == true) return "C";
             else if(piece[2] == true && piece[3] == true) return "D";
             else if(piece[0] == true && piece[1] == true) return "E";
+            else if(piece[0] == true && piece[1] == false && piece[2] == false & piece[3] == false) return "Z";
             else return "F";
            }
 
 
 
+           function resetBoard(){
+                for(i=0; i < 63; i++){
+                    element = document.getElementById('a'+i);
+                    element.className = "square";
+                }
+                for(j=0; j < nbreCase; j++){
+                    board[j] = [null,null,null,null];
+                } 
+
+               document.getElementById('current_piece').className = "current_piece";
+           }
+
+
           function fluidIsMoving(){   
-            moveStarterPiece();// la piece Y bouge!
             var skipFirstSeconde = 0;
             interval = setInterval(function(){       
                 if(skipFirstSeconde == 1){
-
-
-                    //verifie que la piece suivante PUISSE partir (meme si c'est pas la bonne) 
-                    
-                    if(!checkIfNextPieceIsCorrect()){
-                        // si elle ne peut pas alors defaite 
-                        console.log("defaite");
+                    let stopTheLoop = false;
+                    if(previousPiece == endPiece){
+                        stopTheLoop = true;
+                        document.querySelector('h3').innerHTML = "Victory!";
+                        document.querySelector('h4').innerHTML = ".";
+                        currentLevel++;
+                        document.querySelector('h2').innerHTML = "Current level : "+currentLevel+"";
+                        active = false;
+                        resetBoard();
                         clearInterval(interval);
-                    } else {
-                        //previousPiece cest la bonne
-                        console.log("piece attribut="+checkPieceAttribute(board[previousPiece]));
-                        //j'envoi la piece, il verifie les true dedans et garde uniquement le true qui n'est pas = a l'opposé de direction deja existante
-
-
-
-                        animateTube();
-                        nextDirection();
-                        //newDirection();
-                        // direction = toujours egale a celle de la starter
-
-                        //sinon lance l'animation
                     }
-
-
-
+                    if(!stopTheLoop){
+                        if(!checkIfNextPieceIsCorrect()){
+                            document.querySelector('h3').innerHTML = "Defeat!";
+                            document.querySelector('h4').innerHTML = ".";
+                            active = false;
+                            resetBoard();
+                            clearInterval(interval);
+                        } else {
+                            console.log("piece number="+previousPiece);
+                            console.log("direction="+direction);
+                            animateTube();
+                            nextDirection();
+                        }
+                    }
                 } else{
                     console.log("skip first sec")
+                    moveStarterPiece();
                     direction = 2;
                     previousPiece = startPiece;
                     skipFirstSeconde++; 
