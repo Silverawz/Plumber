@@ -41,6 +41,13 @@ body{
     visibility:hidden;
 }
 
+.forbidden{
+    background: url('assets/img/forbidden.png');  
+    background-size: cover;
+    width:90px;
+    height:90px;  
+}
+
 .p_a{
     background: url('assets/img/A/A.png');  
     background-size: cover;

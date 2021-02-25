@@ -15,7 +15,7 @@
            var active = false;
 
            window.onload = function initialize(){
-               for(i=0; i < 63; i++){
+               for(i=0; i < nbreCase; i++){
                    squares[i] = document.getElementById('a'+i);
                }
                for(j=0; j < nbreCase; j++){
@@ -46,26 +46,6 @@
                 document.getElementById('invisible_piece_f1').className = "invisible_piece square moving_f_1";
                 document.getElementById('invisible_piece_y').className = "invisible_piece square moving_y";
                 document.getElementById('invisible_piece_z').className = "invisible_piece square moving_z";
-                /*
-                for(i = 0; i < 14; i++){
-                    switch(i){
-                        case 1: document.getElementById('invisible_piece_a').className = "invisible_piece square moving_a_0";
-                        case 2: document.getElementById('invisible_piece_a1').className = "invisible_piece square moving_a_1";
-                        case 3: document.getElementById('invisible_piece_b').className = "invisible_piece square moving_b_0";
-                        case 4: document.getElementById('invisible_piece_b1').className = "invisible_piece square moving_b_1";
-                        case 5: document.getElementById('invisible_piece_c').className = "invisible_piece square moving_c_0";
-                        case 6: document.getElementById('invisible_piece_c1').className = "invisible_piece square moving_c_1";
-                        case 7: document.getElementById('invisible_piece_d').className = "invisible_piece square moving_d_0";
-                        case 8: document.getElementById('invisible_piece_d1').className = "invisible_piece square moving_d_1";
-                        case 9: document.getElementById('invisible_piece_e').className = "invisible_piece square moving_e_0";
-                        case 10: document.getElementById('invisible_piece_e1').className = "invisible_piece square moving_e_1";
-                        case 11: document.getElementById('invisible_piece_f').className = "invisible_piece square moving_f_0";
-                        case 12: document.getElementById('invisible_piece_f1').className = "invisible_piece square moving_f_1";
-                        case 13: document.getElementById('invisible_piece_y').className = "invisible_piece square moving_y";
-                        case 14: document.getElementById('invisible_piece_z').className = "invisible_piece square moving_z";
-                    }
-                }
-                */
             }
 
 
@@ -114,6 +94,7 @@
                         document.getElementById('a'+38).className = "square p_z";
                         currentPiece = [true, false, true, false];     
                         document.getElementById('current_piece').className = "square p_a";
+                        createForbiddenArea();
                         countdownStart(20);
                 } else if(currentLevel == 2){  
                         board[3] = [false, false, true, false];
@@ -124,6 +105,7 @@
                         document.getElementById('a'+45).className = "square p_z";
                         currentPiece = [true, false, true, false];     
                         document.getElementById('current_piece').className = "square p_a";
+                        createForbiddenArea();
                         countdownStart(20);
                 } else if(currentLevel == 3){  
                        board[16] = [false, false, true, false];
@@ -134,17 +116,19 @@
                        document.getElementById('a'+55).className = "square p_z";
                        currentPiece = [true, false, true, false];     
                        document.getElementById('current_piece').className = "square p_a";
+                       createForbiddenArea();
                        countdownStart(20);
                } else if(currentLevel == 4){  
-                        board[3] = [false, false, true, false];
-                        startPiece = 3;
-                        document.getElementById('a'+3).className = "square p_y";
+                        board[6] = [false, false, true, false];
+                        startPiece = 6;
+                        document.getElementById('a'+6).className = "square p_y";
                         board[58] = [true, false, false, false];
                         endPiece = 58;
                         document.getElementById('a'+58).className = "square p_z";
                         currentPiece = [true, false, true, false];     
                         document.getElementById('current_piece').className = "square p_a";
-                   countdownStart(20);
+                        createForbiddenArea();
+                        countdownStart(20);
                } else if(currentLevel == 5){  
                         board[1] = [false, false, true, false];
                         startPiece = 1;
@@ -154,10 +138,71 @@
                         document.getElementById('a'+62).className = "square p_z";
                         currentPiece = [true, false, true, false];     
                         document.getElementById('current_piece').className = "square p_a";
+                        createForbiddenArea();
                         countdownStart(20);
                }
            }
            
+           function createForbiddenArea(){
+
+            let forbiddenSquare = [false, false, false, false];
+            if(currentLevel == 1){
+                //17, 38 must be avoided
+                board[11] = forbiddenSquare;  squares[11].className = "square forbidden";
+                board[19] = forbiddenSquare;  squares[19].className = "square forbidden";
+                board[27] = forbiddenSquare;  squares[27].className = "square forbidden";
+                board[35] = forbiddenSquare;  squares[35].className = "square forbidden";
+                board[43] = forbiddenSquare;  squares[43].className = "square forbidden";
+            } else if(currentLevel == 2){
+                //3, 45 must be avoided
+                board[25] = forbiddenSquare;  squares[25].className = "square forbidden";
+                board[26] = forbiddenSquare;  squares[26].className = "square forbidden";
+                board[27] = forbiddenSquare;  squares[27].className = "square forbidden";
+                board[28] = forbiddenSquare;  squares[28].className = "square forbidden";
+                board[29] = forbiddenSquare;  squares[29].className = "square forbidden";
+                board[30] = forbiddenSquare;  squares[30].className = "square forbidden";
+                board[31] = forbiddenSquare;  squares[31].className = "square forbidden";
+            } else if(currentLevel == 3){
+                //16, 55 must be avoided
+                board[30] = forbiddenSquare;  squares[30].className = "square forbidden";
+                board[32] = forbiddenSquare;  squares[32].className = "square forbidden";
+                board[34] = forbiddenSquare;  squares[34].className = "square forbidden";
+                board[36] = forbiddenSquare;  squares[36].className = "square forbidden";
+                board[38] = forbiddenSquare;  squares[38].className = "square forbidden";
+                board[40] = forbiddenSquare;  squares[40].className = "square forbidden";
+                board[42] = forbiddenSquare;  squares[42].className = "square forbidden";
+            } else if(currentLevel == 4){
+                //6, 58 must be avoided
+                board[16] = forbiddenSquare;  squares[16].className = "square forbidden";
+                board[17] = forbiddenSquare;  squares[17].className = "square forbidden";
+                board[18] = forbiddenSquare;  squares[18].className = "square forbidden";
+                board[20] = forbiddenSquare;  squares[20].className = "square forbidden";
+                board[21] = forbiddenSquare;  squares[21].className = "square forbidden";
+                board[22] = forbiddenSquare;  squares[22].className = "square forbidden";
+                board[23] = forbiddenSquare;  squares[23].className = "square forbidden";
+            } else if(currentLevel == 5){
+                //1, 62 must be avoided    
+                board[16] = forbiddenSquare;  squares[16].className = "square forbidden";
+                board[17] = forbiddenSquare;  squares[17].className = "square forbidden";
+                board[18] = forbiddenSquare;  squares[18].className = "square forbidden";
+                board[19] = forbiddenSquare;  squares[19].className = "square forbidden";
+                board[20] = forbiddenSquare;  squares[20].className = "square forbidden";
+                board[21] = forbiddenSquare;  squares[21].className = "square forbidden";
+                board[22] = forbiddenSquare;  squares[22].className = "square forbidden";
+
+                board[33] = forbiddenSquare;  squares[33].className = "square forbidden";
+                board[34] = forbiddenSquare;  squares[34].className = "square forbidden";
+                board[35] = forbiddenSquare;  squares[35].className = "square forbidden";
+                board[36] = forbiddenSquare;  squares[36].className = "square forbidden";
+                board[37] = forbiddenSquare;  squares[37].className = "square forbidden";
+                board[38] = forbiddenSquare;  squares[38].className = "square forbidden";
+                board[39] = forbiddenSquare;  squares[39].className = "square forbidden";
+            }
+
+
+
+           }
+
 
            
            function backgroundImgOfPiece(squareNumber){
@@ -330,7 +375,7 @@
 
 
            function resetBoard(){
-                for(i=0; i < 63; i++){
+                for(i=0; i < nbreCase; i++){
                     element = document.getElementById('a'+i);
                     element.className = "square";
                 }
