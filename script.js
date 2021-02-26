@@ -22,15 +22,27 @@
                    board.push([null,null,null,null]);
                } 
                loadImgInBackGround();
-               document.querySelector('h2').innerHTML = "Current level : "+currentLevel+"";
+               document.querySelector('h2').innerHTML = "Niveau actuel : "+currentLevel+"";
             }
            
             function start(){
-                document.querySelector('h3').innerHTML = "Playing...";
+                document.getElementById('btn_start').style.visibility = "hidden";
+                document.querySelector('h3').innerHTML = "En cours de partie";
                 startingGame();
                 addEventListenerForSquares();
             }
            
+            function reset_game(){
+                active = false;
+                currentLevel = 1;
+                victory = false;
+                document.querySelector('h3').innerHTML = ".";
+                document.querySelector('h4').innerHTML = ".";
+                resetBoard();
+            }
+
+
+
             function loadImgInBackGround(){
                 document.getElementById('invisible_piece_a').className = "invisible_piece square moving_a_0";
                 document.getElementById('invisible_piece_a1').className = "invisible_piece square moving_a_1";
@@ -128,7 +140,7 @@
                         currentPiece = [true, false, true, false];     
                         document.getElementById('current_piece').className = "square p_a";
                         createForbiddenArea();
-                        countdownStart(20);
+                        countdownStart(15);
                } else if(currentLevel == 5){  
                         board[1] = [false, false, true, false];
                         startPiece = 1;
@@ -139,40 +151,104 @@
                         currentPiece = [true, false, true, false];     
                         document.getElementById('current_piece').className = "square p_a";
                         createForbiddenArea();
-                        countdownStart(20);
+                        countdownStart(15);
+               } else if(currentLevel == 6){  
+                        board[32] = [false, false, true, false];
+                        startPiece = 32;
+                        document.getElementById('a'+32).className = "square p_y";
+                        board[24] = [true, false, false, false];
+                        endPiece = 24;
+                        document.getElementById('a'+24).className = "square p_z";
+                        currentPiece = [true, false, true, false];     
+                        document.getElementById('current_piece').className = "square p_a";
+                        createForbiddenArea();
+                        countdownStart(15);
+               } else if(currentLevel == 7){  
+                        board[18] = [false, false, true, false];
+                        startPiece = 18;
+                        document.getElementById('a'+18).className = "square p_y";
+                        board[45] = [true, false, false, false];
+                        endPiece = 45;
+                        document.getElementById('a'+45).className = "square p_z";
+                        currentPiece = [true, false, true, false];     
+                        document.getElementById('current_piece').className = "square p_a";
+                        createForbiddenArea();
+                        countdownStart(10);
+               } else if(currentLevel == 8){  
+                        board[48] = [false, false, true, false];
+                        startPiece = 48;
+                        document.getElementById('a'+48).className = "square p_y";
+                        board[15] = [true, false, false, false];
+                        endPiece = 15;
+                        document.getElementById('a'+15).className = "square p_z";
+                        currentPiece = [true, false, true, false];     
+                        document.getElementById('current_piece').className = "square p_a";
+                        createForbiddenArea();
+                        countdownStart(10);    
+               } else if(currentLevel == 9){  
+                        board[22] = [false, false, true, false];
+                        startPiece = 22;
+                        document.getElementById('a'+22).className = "square p_y";
+                        board[41] = [true, false, false, false];
+                        endPiece = 41;
+                        document.getElementById('a'+41).className = "square p_z";
+                        currentPiece = [true, false, true, false];     
+                        document.getElementById('current_piece').className = "square p_a";
+                        createForbiddenArea();
+                        countdownStart(10);    
+               } else if(currentLevel == 10){  
+                        board[36] = [false, false, true, false];
+                        startPiece = 36;
+                        document.getElementById('a'+36).className = "square p_y";
+                        board[28] = [true, false, false, false];
+                        endPiece = 28;
+                        document.getElementById('a'+28).className = "square p_z";
+                        currentPiece = [true, false, true, false];     
+                        document.getElementById('current_piece').className = "square p_a";
+                        createForbiddenArea();
+                        countdownStart(5);
                }
            }
            
            function createForbiddenArea(){
-
             let forbiddenSquare = [false, false, false, false];
             if(currentLevel == 1){
                 //17, 38 must be avoided
-                board[11] = forbiddenSquare;  squares[11].className = "square forbidden";
-                board[19] = forbiddenSquare;  squares[19].className = "square forbidden";
-                board[27] = forbiddenSquare;  squares[27].className = "square forbidden";
-                board[35] = forbiddenSquare;  squares[35].className = "square forbidden";
-                board[43] = forbiddenSquare;  squares[43].className = "square forbidden";
+                //25, 30 
+                board[18] = forbiddenSquare;  squares[18].className = "square forbidden";
+                board[26] = forbiddenSquare;  squares[26].className = "square forbidden";
+                board[32] = forbiddenSquare;  squares[32].className = "square forbidden";
+                board[33] = forbiddenSquare;  squares[33].className = "square forbidden";
+                board[34] = forbiddenSquare;  squares[34].className = "square forbidden";
+
+                board[22] = forbiddenSquare;  squares[22].className = "square forbidden";
+                board[28] = forbiddenSquare;  squares[28].className = "square forbidden";  
+                board[31] = forbiddenSquare;  squares[31].className = "square forbidden";   
             } else if(currentLevel == 2){
                 //3, 45 must be avoided
-                board[25] = forbiddenSquare;  squares[25].className = "square forbidden";
-                board[26] = forbiddenSquare;  squares[26].className = "square forbidden";
-                board[27] = forbiddenSquare;  squares[27].className = "square forbidden";
+                //11, 37
+                board[4] = forbiddenSquare;  squares[4].className = "square forbidden";
+                board[12] = forbiddenSquare;  squares[12].className = "square forbidden";
+                board[20] = forbiddenSquare;  squares[20].className = "square forbidden";
                 board[28] = forbiddenSquare;  squares[28].className = "square forbidden";
-                board[29] = forbiddenSquare;  squares[29].className = "square forbidden";
-                board[30] = forbiddenSquare;  squares[30].className = "square forbidden";
-                board[31] = forbiddenSquare;  squares[31].className = "square forbidden";
+                board[36] = forbiddenSquare;  squares[36].className = "square forbidden";
+                board[44] = forbiddenSquare;  squares[44].className = "square forbidden";
+                board[52] = forbiddenSquare;  squares[52].className = "square forbidden";
             } else if(currentLevel == 3){
                 //16, 55 must be avoided
-                board[30] = forbiddenSquare;  squares[30].className = "square forbidden";
+                //24, 47
+                board[26] = forbiddenSquare;  squares[26].className = "square forbidden";
                 board[32] = forbiddenSquare;  squares[32].className = "square forbidden";
+                board[33] = forbiddenSquare;  squares[33].className = "square forbidden";
                 board[34] = forbiddenSquare;  squares[34].className = "square forbidden";
-                board[36] = forbiddenSquare;  squares[36].className = "square forbidden";
+
+                board[30] = forbiddenSquare;  squares[30].className = "square forbidden";
                 board[38] = forbiddenSquare;  squares[38].className = "square forbidden";
-                board[40] = forbiddenSquare;  squares[40].className = "square forbidden";
-                board[42] = forbiddenSquare;  squares[42].className = "square forbidden";
+                board[46] = forbiddenSquare;  squares[46].className = "square forbidden";
+                board[54] = forbiddenSquare;  squares[54].className = "square forbidden";
             } else if(currentLevel == 4){
                 //6, 58 must be avoided
+                //14, 50
                 board[16] = forbiddenSquare;  squares[16].className = "square forbidden";
                 board[17] = forbiddenSquare;  squares[17].className = "square forbidden";
                 board[18] = forbiddenSquare;  squares[18].className = "square forbidden";
@@ -180,23 +256,47 @@
                 board[21] = forbiddenSquare;  squares[21].className = "square forbidden";
                 board[22] = forbiddenSquare;  squares[22].className = "square forbidden";
                 board[23] = forbiddenSquare;  squares[23].className = "square forbidden";
+
+                board[32] = forbiddenSquare;  squares[32].className = "square forbidden";
+                board[34] = forbiddenSquare;  squares[34].className = "square forbidden";
+                board[36] = forbiddenSquare;  squares[36].className = "square forbidden";
+                board[38] = forbiddenSquare;  squares[38].className = "square forbidden";
+
             } else if(currentLevel == 5){
                 //1, 62 must be avoided    
-                board[16] = forbiddenSquare;  squares[16].className = "square forbidden";
-                board[17] = forbiddenSquare;  squares[17].className = "square forbidden";
-                board[18] = forbiddenSquare;  squares[18].className = "square forbidden";
+                //9, 54
+                board[24] = forbiddenSquare;  squares[24].className = "square forbidden";
+                board[25] = forbiddenSquare;  squares[25].className = "square forbidden";
+                board[26] = forbiddenSquare;  squares[26].className = "square forbidden";
+                board[27] = forbiddenSquare;  squares[27].className = "square forbidden";
+                board[11] = forbiddenSquare;  squares[11].className = "square forbidden";
                 board[19] = forbiddenSquare;  squares[19].className = "square forbidden";
-                board[20] = forbiddenSquare;  squares[20].className = "square forbidden";
-                board[21] = forbiddenSquare;  squares[21].className = "square forbidden";
-                board[22] = forbiddenSquare;  squares[22].className = "square forbidden";
-
+                board[37] = forbiddenSquare;  squares[37].className = "square forbidden";
+                board[38] = forbiddenSquare;  squares[38].className = "square forbidden";
+                board[39] = forbiddenSquare;  squares[39].className = "square forbidden";
+                board[44] = forbiddenSquare;  squares[44].className = "square forbidden";
+                board[51] = forbiddenSquare;  squares[51].className = "square forbidden";
+            } else if(currentLevel == 6){
+                //32, 24 must be avoided    
+                //40, 16
                 board[33] = forbiddenSquare;  squares[33].className = "square forbidden";
                 board[34] = forbiddenSquare;  squares[34].className = "square forbidden";
                 board[35] = forbiddenSquare;  squares[35].className = "square forbidden";
                 board[36] = forbiddenSquare;  squares[36].className = "square forbidden";
                 board[37] = forbiddenSquare;  squares[37].className = "square forbidden";
                 board[38] = forbiddenSquare;  squares[38].className = "square forbidden";
-                board[39] = forbiddenSquare;  squares[39].className = "square forbidden";
+            } else if(currentLevel == 7){
+                //18, 45 must be avoided    
+                //26, 37
+            } else if(currentLevel == 8){
+                //48, 15 must be avoided    
+                //56, 7
+            } else if(currentLevel == 9){
+                //22, 41 must be avoided    
+                //30, 33
+            } else if(currentLevel == 10){
+                //36, 28 must be avoided    
+                //44, 20
             }
 
 
@@ -283,12 +383,18 @@
            function countdownStart(cd){
             countdown = cd;
             timer = setInterval(function() {
-                countdown--;
-                document.querySelector('h4').innerHTML = "Starting in : "+countdown;
-                if(countdown == 0) {
+                if(!active){
                     clearInterval(timer);
-                    document.querySelector('h4').innerHTML = "";
-                    fluidIsMoving();
+                    document.querySelector('h4').innerHTML = ".";
+                }
+                if(active){
+                    countdown--;
+                    document.querySelector('h4').innerHTML = "Le jeu commence dans : "+countdown+" sec";
+                    if(countdown == 0) {
+                        clearInterval(timer);
+                        document.querySelector('h4').innerHTML = ".";
+                        fluidIsMoving();
+                    }
                 }
             }, 1000);
         }
@@ -382,7 +488,7 @@
                 for(j=0; j < nbreCase; j++){
                     board[j] = [null,null,null,null];
                 } 
-
+               document.getElementById('btn_start').style.visibility = "visible";
                document.getElementById('current_piece').className = "current_piece";
            }
 
@@ -394,18 +500,18 @@
                     let stopTheLoop = false;
                     if(previousPiece == endPiece){
                         stopTheLoop = true;
-                        document.querySelector('h3').innerHTML = "Victory!";
-                        document.querySelector('h4').innerHTML = ".";
+                        document.querySelector('h3').innerHTML = "Victoire du niveau !";
+                        document.querySelector('h4').innerHTML = "";
                         currentLevel++;
-                        document.querySelector('h2').innerHTML = "Current level : "+currentLevel+"";
+                        document.querySelector('h2').innerHTML = "Niveau actuel : "+currentLevel+"";
                         active = false;
                         resetBoard();
                         clearInterval(interval);
                     }
                     if(!stopTheLoop){
                         if(!checkIfNextPieceIsCorrect()){
-                            document.querySelector('h3').innerHTML = "Defeat!";
-                            document.querySelector('h4').innerHTML = ".";
+                            document.querySelector('h3').innerHTML = "Vous avez perdu !";
+                            document.querySelector('h4').innerHTML = "";
                             active = false;
                             resetBoard();
                             clearInterval(interval);

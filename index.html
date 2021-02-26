@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plumber game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quantico:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
 <body>
-    <h1>Jeu du plombier JS</h1>
-    <h2>.</h2>
+    <h1>Jeu du plombier (HTML, CSS et JS)</h1>
+    <h2></h2>
     <h3>.</h3>
     <h4>.</h4>
-    <button onClick="start()">Lancer la partie</button>
+    <button id="btn_start" onClick="start()">Lancer la partie</button>
     <div class="current_piece" id="current_piece"></div>
+    <button id="btn_reset" onClick="reset_game()">Réinitialiser le jeu au niveau 1</button>
     <div class="board">
         <div class="square" id="a0"></div>
         <div class="square" id="a1"></div>
